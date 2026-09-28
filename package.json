@@ -7,7 +7,7 @@
   "scripts": {
     "start": "electron .",
     "build:linux": "electron-builder --linux AppImage",
-    "build:mac": "electron-builder --mac dmg"
+    "build:mac": "electron-builder --mac zip"
   },
   "build": {
     "appId": "com.ders.minimalistword",
@@ -15,19 +15,14 @@
     "directories": {
       "output": "dist"
     },
+    "publish": "never",
     "linux": {
       "target": ["AppImage"],
       "category": "Office"
     },
     "mac": {
-      "target": ["dmg"],
-      "category": "public.app-category.productivity",
-      "hardenedRuntime": false,
-      "gatekeeperAssess": false,
-      "notarize": false
-    },
-    "dmg": {
-      "sign": false
+      "target": ["zip"],
+      "category": "public.app-category.productivity"
     }
   },
   "dependencies": {
