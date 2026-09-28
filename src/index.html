@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Minimalist Word - Mac Stili</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Araç Çubuğu -->
+    <header class="toolbar">
+        <div class="toolbar-row single-line">
+            <button id="openBtn" class="tool-item icon-btn" title="Dosya Aç">📂</button>
+            <button id="newPageBtn" class="tool-item icon-btn" title="Yeni Sayfa">📄</button>
+            <button id="themeToggleBtn" class="tool-item icon-btn" title="Tema Değiştir">🌙</button>
+            <button id="redColorBtn" class="tool-item icon-btn red-text-btn" onmousedown="event.preventDefault()" title="Kırmızı Renk">A</button>
+            <button id="boldBtn" class="tool-item icon-btn" onmousedown="event.preventDefault()" title="Kalın (Ctrl+B)"><b>B</b></button>
+            
+            <!-- Sola Yasla (Siyah) ve Sağa Yasla (Kırmızı) -->
+            <button id="alignLeftBtn" class="tool-item icon-btn" onmousedown="event.preventDefault()" title="Sola Yasla">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 4h18v2H3V4zm0 5h12v2H3V9zm0 5h18v2H3v-2zm0 5h10v2H3v-2z"/>
+                </svg>
+            </button>
+            <button id="alignRightBtn" class="tool-item icon-btn red-icon-btn" onmousedown="event.preventDefault()" title="Sağa Yasla">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 4h18v2H3V4zm6 5h12v2H9V9zm-6 5h18v2H3v-2zm8 5h10v2H11v-2z"/>
+                </svg>
+            </button>
+
+            <!-- Metin Yönleri (Soldan Başla / LTR Kırmızı İkon) -->
+            <button id="rtlBtn" class="tool-item icon-btn text-tag" onmousedown="event.preventDefault()" title="Sağdan Sola Yön (RTL)">⬅</button>
+            <button id="ltrBtn" class="tool-item icon-btn text-tag red-icon-btn" onmousedown="event.preventDefault()" title="Soldan Sağa Yön / Yazıya Soldan Başla (LTR)">➡</button>
+            
+            <select id="fontSelect" class="tool-item rect-item" title="Yazı Tipi">
+                <option value="Calibri" selected>Calibri</option>
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Segoe UI">Segoe UI</option>
+                <option value="Courier New">Courier New</option>
+            </select>
+
+            <select id="sizeSelect" class="tool-item rect-item" title="Yazı Boyutu">
+                <option value="10pt">10 pt</option>
+                <option value="12pt">12 pt</option>
+                <option value="14pt">14 pt</option>
+                <option value="16pt" selected>16 pt</option>
+                <option value="18pt">18 pt</option>
+                <option value="24pt">24 pt</option>
+                <option value="32pt">32 pt</option>
+                <option value="48pt">48 pt</option>
+                <option value="56pt">56 pt</option>
+                <option value="64pt">64 pt</option>
+                <option value="72pt">72 pt</option>
+                <option value="84pt">84 pt</option>
+                <option value="96pt">96 pt</option>
+            </select>
+
+            <input type="number" id="toolbarScaleInput" class="tool-item rect-item scale-box" value="50" min="8" title="Ölçek">
+
+            <select id="pageSizeSelect" class="tool-item rect-item" title="Sayfa Düzeni">
+                <option value="a4">Standart A4 (Dikey)</option>
+                <option value="a4-landscape">A4 Yatay</option>
+                <option value="letter">Mektup (Letter)</option>
+                <option value="fullscreen" selected>Tam Ekran / Web</option>
+            </select>
+
+            <button id="saveBtn" class="tool-item icon-btn save-btn" title="Kaydet (Ctrl+S)">💾</button>
+            <input type="file" id="fileInput" accept=".docx, .html, .htm, .txt" style="display: none;">
+        </div>
+    </header>
+
+    <!-- Yazı Alanı -->
+    <main class="editor-container" id="editorContainer">
+        <div class="page" contenteditable="true" data-page-no="1" data-total-pages="1" style="width: 95%; height: 1123px; padding: 60px 80px;"><p><br></p></div>
+    </main>
+
+    <!-- Durum Çubuğu -->
+    <footer class="status-bar">
+        <div id="statsInfo">Sayfa 1 / 1 | 0 kelime | 0 karakter</div>
+        <div class="status-bar-right">
+            <span>Türkçe</span>
+            <span id="saveStatus">Hazır</span>
+        </div>
+    </footer>
+
+    <script type="module" src="js/renderer.js"></script>
+</body>
+</html>

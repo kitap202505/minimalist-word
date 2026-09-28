@@ -1,0 +1,40 @@
+name: Build Electron App
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build App
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+        run: |
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            npm run build:linux
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            npm run build:mac
+          fi
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-files-${{ matrix.os }}
+          path: dist/
